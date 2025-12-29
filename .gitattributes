@@ -1,0 +1,24 @@
+# --- Images: always binary, never text ---
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.webp binary
+*.bmp  binary
+*.tiff binary
+*.svg  binary
+
+# --- Audio / video just in case ---
+*.mp3  binary
+*.wav  binary
+*.ogg  binary
+*.mp4  binary
+*.webm binary
+
+# --- Archives ---
+*.zip binary
+*.rar binary
+*.7z  binary
+
+# -- Text Files --
+* text=auto
