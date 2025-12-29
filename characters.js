@@ -1,4 +1,3 @@
-// Character image filenames (ensure these match your actual files)
 const characterImages = [
     'images/characters/1.png',
     'images/characters/2.png',
