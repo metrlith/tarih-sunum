@@ -3,102 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10-D/11-D Tarih Sunumu</title>
-    <meta name="description" content="10-D/11-D Tarih Sunumu - Beşiktaş tarihi mekanları fotoğraf galerisi">
-    <meta name="keywords" content="Beşiktaş, Yıldız Sarayı, Deniz Müzesi, tarih, İstanbul">
-    <meta property="og:title" content="10-D/11-D Tarih Sunumu">
-    <meta property="og:description" content="Beşiktaş tarihi mekanların fotoğraf galerisi">
-    <meta property="og:type" content="website">
-    <link rel="stylesheet" href="styles.css">
+    <title>10/D-11/D Yıldız Sarayı Tarih Sunumu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-        <div class="loader">
-            <div class="loader-text">Yükleniyor...</div>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Yükleniyor...</div>
+        <div class="loading-progress-bar">
+            <div class="loading-progress"></div>
         </div>
+        <div class="loading-footer">Resimlerin yüklenmesi uzun sürebilir, lütfen sabırlı olun.</div>
     </div>
-    
-    <div class="container">
-        <div class="main-character">
-            🏛 Ekim Ayı <br> Beşiktaş Gezisi
-        </div>
-
-        <button class="credits-btn" onclick="openCredits()" style="position:absolute;top:20px;right:30px;z-index:10;">
-            Hazırlayanlar
-        </button>
-
-        <div class="collage-container">
-            <button class="location-collage" 
-                    onclick="openGallery('bahçe')" 
-                    onkeydown="handleKeyDown(event, 'bahçe')"
-                    aria-label="Yıldız Sarayı Bahçe galerisini aç - 8 fotoğraf">
-                <div class="collage-photo" style="background-image: url('images/bahçe_1.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/bahçe_2.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/bahçe_3.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/bahçe_4.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/bahçe_5.jpg')"></div>
-                <div class="location-title">Yıldız Sarayı Bahçe</div>
-                <div class="location-count">8 fotoğraf</div>
-            </button>
-
-            <button class="location-collage" onclick="openGallery('beşiktaş')" onkeydown="handleKeyDown(event, 'beşiktaş')">
-                <div class="collage-photo" style="background-image: url('images/beşiktaş_1.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/beşiktaş_2.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/beşiktaş_3.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/beşiktaş_4.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/beşiktaş_5.jpg')"></div>
-                <div class="location-title">Beşiktaş</div>
-                <div class="location-count">17 fotoğraf</div>
-            </button>
-
-            <button class="location-collage" onclick="openGallery('deniz_müzesi')" onkeydown="handleKeyDown(event, 'deniz_müzesi')">
-                <div class="collage-photo" style="background-image: url('images/deniz_müzesi_1.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/deniz_müzesi_2.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/deniz_müzesi_3.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/deniz_müzesi_4.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/deniz_müzesi_5.jpg')"></div>
-                <div class="location-title">Deniz Müzesi</div>
-                <div class="location-count">35 fotoğraf</div>
-            </button>
-
-            <button class="location-collage" onclick="openGallery('yıldız')" onkeydown="handleKeyDown(event, 'yıldız')">
-                <div class="collage-photo" style="background-image: url('images/yıldız_i1.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/yıldız_i2.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/yıldız_o1.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/yıldız_o2.jpg')"></div>
-                <div class="collage-photo" style="background-image: url('images/yıldız_i3.jpg')"></div>
-                <div class="location-title">Yıldız Sarayı İç/Dış</div>
-                <div class="location-count">90+ fotoğraf & video</div>
-            </button>
-        </div>
+    <header>
+        <h1>10/D-11/D Yıldız Sarayı Tarih Sunumu - Görsel Galeri</h1>
+    </header>
+    <canvas id="character-canvas"></canvas>
+    <main id="gallery">
+    </main>
+    <div id="zoom-modal" class="zoom-modal">
+        <button class="close-btn" aria-label="Kapat">&times;</button>
+        <img src="" alt="">
     </div>
-
-    <!-- Modal for gallery -->
-    <div id="galleryModal" class="modal">
-        <div class="modal-content">
-            <button class="close" onclick="closeGallery()" aria-label="Galeriyi kapat">&times;</button>
-            <div class="modal-header">
-                <h2 id="galleryTitle">Gallery</h2>
-                <span id="imageCounter" class="image-counter"></span>
-            </div>
-            <div id="galleryContainer" class="gallery"></div>
-        </div>
-    </div>
-
-    <!-- Credits Modal -->
-    <div id="creditsModal" class="modal">
-        <div class="modal-content" style="max-width:500px;">
-            <button class="close" onclick="closeCredits()" aria-label="Kapat">&times;</button>
-            <h2>Hazırlayanlar</h2>
-            <img src="images/credits.jpg" alt="Credits" style="width:100%;border-radius:12px;margin-bottom:20px;">
-            <form id="creditsForm" style="display:flex;flex-direction:column;gap:10px;">
-                <label for="creditNames">Sarp Çetinsoylu - 11/D | Ege Toprakal - 10/D | Berk Varlı - 10/D | Kıvanç Bozik - 10/D
-                </label>
-            </form>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <script src="gallery.js"></script>
+    <script src="characters.js"></script>
+    <footer>
+        &copy; 
+        <a href="LICENSE.md" target="_blank">License/Lisans</a>
+    </footer>
 </body>
 </html>
