@@ -1,10 +1,10 @@
 const characterImages = [
-    'images/characters/1.png',
-    'images/characters/2.png',
-    'images/characters/3.png',
-    'images/characters/4.png',
-    'images/characters/5.png',
-    'images/characters/6.png'
+    'images/png/1.png',
+    'images/png/2.png',
+    'images/png/3.png',
+    'images/png/4.png',
+    'images/png/5.png',
+    'images/png/6.png'
 ];
 
 const canvas = document.getElementById('character-canvas');
