@@ -63,6 +63,7 @@ main#gallery {
     margin-bottom: 1.2rem;
     letter-spacing: 0.5px;
     text-shadow: 0 2px 8px #e0eafc;
+    text-align: center;
 }
 
 .gallery-grid {
