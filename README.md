@@ -1,11 +1,11 @@
 # Hi there!
 
-For my English speaking friends, you aren't supposed to be here. This is a school project for my friends.
+For my English speaking audience, you aren't supposed to be here. Check other stuff. This is a school project I don't participate in, for my friends (the code is mine, the photos are mostly mine and I'm not in the selfies)
 
 ## What you should do
 
-1. You could visit my [GitHub profile](https://github.com/metrlith) to see my other projects.
-2. Go visit [images\characters](./images/characters) to see the characters I made for this project!
+1. Visit my [GitHub profile](https://github.com/metrlith) to see my other projects
+2. Go be busy with your life
 
 ## What you shouldn't do
 

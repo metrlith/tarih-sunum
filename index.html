@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10/D-11/D Yıldız Sarayı Tarih Sunumu</title>
+    <title>10/D-11/D Tarih Sunumu</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div id="loading-overlay">
@@ -15,21 +18,85 @@
         </div>
         <div class="loading-footer">Resimlerin yüklenmesi uzun sürebilir, lütfen sabırlı olun.</div>
     </div>
+
     <header>
-        <h1>10/D-11/D Yıldız Sarayı Tarih Sunumu - Görsel Galeri</h1>
+        <h1>10/D-11/D Tarih Sunumu - Görsel Galeri</h1>
     </header>
-    <canvas id="character-canvas"></canvas>
+
     <main id="gallery">
     </main>
+
+    <!-- Zoom Modal -->
     <div id="zoom-modal" class="zoom-modal">
         <button class="close-btn" aria-label="Kapat">&times;</button>
         <img src="" alt="">
     </div>
-    <script src="gallery.js"></script>
-    <script src="characters.js"></script>
+
+    <!-- Markdown Modal -->
+    <div id="markdown-modal" class="markdown-modal">
+        <div class="markdown-content">
+            <button class="close-markdown" aria-label="Kapat">&times;</button>
+            <div id="markdown-body"></div>
+        </div>
+    </div>
+
     <footer>
         &copy; 
-        <a href="LICENSE.md" target="_blank">License/Lisans</a>
+        <button class="open-license">License/Lisans</button>
+        <button class="open-credits">Credits/Katılımcılar</button>
     </footer>
+
+    <!-- Credits Modal -->
+    <div id="credits-modal" class="markdown-modal">
+        <div class="markdown-content">
+            <button class="close-credits" aria-label="Kapat">&times;</button>
+            <div id="credits-body">
+                <!-- I'll inject the images + names here via JS :P -->
+            </div>
+        </div>
+    </div>
+
+    <script src="gallery.js"></script>
+    <script>
+        // --- Markdown Modal Logic ---
+        async function openMarkdown(url) {
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Dosya bulunamadı');
+                const text = await res.text();
+                document.getElementById('markdown-body').innerHTML = marked.parse(text);
+                document.getElementById('markdown-modal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } catch (err) {
+                alert('Markdown yüklenemedi: ' + err.message);
+            }
+        }
+
+        function closeMarkdown() {
+            document.getElementById('markdown-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelector('.close-markdown').addEventListener('click', closeMarkdown);
+        document.getElementById('markdown-modal').addEventListener('click', e => {
+            if (e.target.id === 'markdown-modal') closeMarkdown();
+        });
+
+        document.querySelector('.open-license').addEventListener('click', () => {
+            openMarkdown('LICENSE.md');
+        });
+    </script>
+
+    <!-- Floating CD Player -->
+    <div id="cd-player">
+        <div class="cd-icon">
+            <img src="images/cd.webp" alt="CD" />
+        </div>
+        <select id="bgm-selector" title="Select BGM">
+            <option value="audio/bgm1.mp3">Müzik 1</option>
+            <option value="audio/bgm2.mp3">Müzik 2</option>
+            <option value="audio/bgm3.mp3">Müzik 3</option>
+        </select>
+    </div>
 </body>
 </html>
